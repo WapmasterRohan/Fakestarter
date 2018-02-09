@@ -1,0 +1,28 @@
+<% include("../partials/header") %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Fakestarter</p>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <div class="caption-full">
+                    <h4 class="pull-right">Required Fund: $<%= campaign.requiredFund %></h4>
+                    <h4><a><%=campaign.name%></a></h4>
+                    <p><%= campaign.description %></p>
+                    <p>
+                        <em>Created By <%= campaign.creator.username %></em>
+                    </p>
+                    <% if(currentUser && campaign.creator.id.equals(currentUser._id)){ %>
+                        <a class="btn btn-xs btn-warning" href="/campaigns/<%= campaign._id %>/edit">Edit</a>
+                        <form id="delete-form" action="/campaigns/<%= campaign._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-xs btn-danger">Delete</button>
+                        </form>
+                    <% }%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include("../partials/footer") %>

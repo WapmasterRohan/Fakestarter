@@ -44,8 +44,10 @@ app.use((req, res, next) => {
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
     next();
- });
- 
+});
+
+app.use("/", indexRoutes);
+app.use("/campaigns", campaignsRoutes);
 
 app.listen(PORT, process.env.IP, () => {
     console.log("The YelpCamp Server Has Started at " + PORT + "!");
